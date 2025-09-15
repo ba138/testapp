@@ -65,18 +65,6 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      // Center(
-      //   child: Container(
-      //     height: 200,
-      //     width: 200,
-      //     decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(8),
-      //       color: Colors.amberAccent,
-      //       border: Border.all(color: Colors.black, width: 0.5),
-      //     ),
-      //     child: Center(child: Text("This is container")),
-      //   ),
-      // ),
 
       // Center(
       //   child: Text(
