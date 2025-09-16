@@ -11,6 +11,7 @@ class DecorcationWidgetScreen extends StatelessWidget {
           Card(
             elevation: 10,
             shadowColor: Colors.purpleAccent,
+            color: Colors.amberAccent,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -20,7 +21,6 @@ class DecorcationWidgetScreen extends StatelessWidget {
                 ],
               ),
             ),
-            color: Colors.amberAccent,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 60, right: 60),
