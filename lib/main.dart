@@ -1,3 +1,4 @@
+import 'package:firstapp/views/buttons_screen.dart';
 import 'package:firstapp/views/decorcation_widget_screen.dart';
 import 'package:firstapp/views/interaction_widget_screen.dart';
 import 'package:firstapp/views/splash_screen.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: InteractionWidgetScreen(),
+      home: ButtonsScreen(),
     );
   }
 }
