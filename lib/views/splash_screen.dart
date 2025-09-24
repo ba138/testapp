@@ -1,3 +1,4 @@
+import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("This is Splash Screen")));
+    return Scaffold(
+      backgroundColor: AppColors.primaryColor,
+      body: Center(
+        child: Image.asset("assets/Logo.png", height: 100, width: 300),
+      ),
+    );
   }
 }

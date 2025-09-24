@@ -1,3 +1,4 @@
+import 'package:firstapp/utills/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,81 +9,255 @@ class LoginScreen extends StatelessWidget {
     var emailcontroller = TextEditingController();
     var passwordController = TextEditingController();
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20),
-              child: TextField(
-                controller: emailcontroller,
-                decoration: InputDecoration(
-                  // border: InputBorder.none,
-                  hintText: "Enter your email",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.black, width: 1),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        color: AppColors.primaryColor,
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 30),
+              Image.asset("assets/Logo.png", height: 50, width: 200),
+              const SizedBox(height: 150),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
                   ),
-                  label: Text("Email"),
-                  filled: true,
-                  fillColor: Colors.grey.withValues(alpha: 0.2),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.red, width: 1),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 12,
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              height: 4,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: AppColors.strokeColor,
+                                borderRadius: BorderRadius.circular(2),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 16),
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                              color: AppColors.toldTextColor,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            "Enter your credentials to login to your account",
+                            style: TextStyle(
+                              color: AppColors.subtitleTextColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: AppColors.textFieldFillColor,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: AppColors.strokeColor),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 8,
+                                    right: 8.0,
+                                    top: 8,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Email",
+                                        style: TextStyle(
+                                          color: AppColors.toldTextColor,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      TextField(
+                                        controller: emailcontroller,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: "Enter your email",
+                                          hintStyle: TextStyle(
+                                            color: AppColors.subtitleTextColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          contentPadding: EdgeInsets.only(
+                                            top: 12,
+                                            bottom: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Divider(color: AppColors.strokeColor),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 8,
+                                    right: 8.0,
+                                    top: 8,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Password",
+                                        style: TextStyle(
+                                          color: AppColors.toldTextColor,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      TextField(
+                                        controller: emailcontroller,
+                                        decoration: InputDecoration(
+                                          suffixIcon: Icon(
+                                            Icons.visibility,
+                                            color: AppColors.strokeColor,
+                                          ),
+                                          border: InputBorder.none,
+                                          hintText: "******",
+                                          hintStyle: TextStyle(
+                                            color: AppColors.subtitleTextColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          contentPadding: EdgeInsets.only(
+                                            top: 12,
+                                            bottom: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Row(
+                            children: [
+                              Container(
+                                height: 15,
+                                width: 15,
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryColor.withValues(
+                                    alpha: 0.2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: AppColors.primaryColor,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                "I agree with the",
+                                style: TextStyle(
+                                  color: AppColors.subtitleTextColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                "terms & policies",
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            height: 56,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: AppColors.secondaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: AppColors.subtitleTextColor,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                "Or login with",
+                                style: TextStyle(
+                                  color: AppColors.subtitleTextColor,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+
+                              Expanded(
+                                child: Divider(
+                                  color: AppColors.subtitleTextColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20),
-              child: TextField(
-                keyboardType: TextInputType.visiblePassword,
-                controller: passwordController,
-                decoration: InputDecoration(
-                  // border: InputBorder.none,
-                  hintText: "Enter your password",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                  label: Text("Password"),
-                  filled: true,
-                  fillColor: Colors.grey.withValues(alpha: 0.2),
-                  disabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.black, width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    borderSide: BorderSide(color: Colors.red, width: 1),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Text("Forget Password?"),
-              ),
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  debugPrint("this is email ${emailcontroller.text}");
-                  debugPrint("this is password ${passwordController.text}");
-                },
-                child: (Text("Login")),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

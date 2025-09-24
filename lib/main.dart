@@ -1,6 +1,3 @@
-import 'package:firstapp/views/buttons_screen.dart';
-import 'package:firstapp/views/decorcation_widget_screen.dart';
-import 'package:firstapp/views/interaction_widget_screen.dart';
 import 'package:firstapp/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
