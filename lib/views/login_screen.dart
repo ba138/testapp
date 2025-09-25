@@ -1,13 +1,20 @@
+import 'package:firstapp/const/auth_button.dart';
+import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  var emailcontroller = TextEditingController();
+  var passwordController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    var emailcontroller = TextEditingController();
-    var passwordController = TextEditingController();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -135,7 +142,7 @@ class LoginScreen extends StatelessWidget {
                                         ),
                                       ),
                                       TextField(
-                                        controller: emailcontroller,
+                                        controller: passwordController,
                                         decoration: InputDecoration(
                                           suffixIcon: Icon(
                                             Icons.visibility,
@@ -208,24 +215,13 @@ class LoginScreen extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 20),
-                          Container(
-                            height: 56,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                  color: AppColors.secondaryColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
+                          PrimaryButton(
+                            buttontext: "Login",
+                            onTap: () {
+                              debugPrint("Login tapped");
+                            },
                           ),
+
                           const SizedBox(height: 20),
                           Row(
                             children: [
@@ -246,6 +242,52 @@ class LoginScreen extends StatelessWidget {
                               Expanded(
                                 child: Divider(
                                   color: AppColors.subtitleTextColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AuthButton(
+                                imagePath: "assets/google.png",
+                                ontap: () {
+                                  debugPrint("Google button tapped");
+                                },
+                              ),
+                              AuthButton(
+                                imagePath: "assets/fb.png",
+                                ontap: () {
+                                  debugPrint("Facebook button tapped");
+                                },
+                              ),
+                              AuthButton(
+                                imagePath: "assets/apple.png",
+                                ontap: () {
+                                  debugPrint("Apple button tapped");
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't have an account?",
+                                style: TextStyle(
+                                  color: AppColors.subtitleTextColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                "Sign up",
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ],
