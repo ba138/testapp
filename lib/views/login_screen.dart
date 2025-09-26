@@ -1,6 +1,7 @@
 import 'package:firstapp/const/auth_button.dart';
 import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
+import 'package:firstapp/views/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -282,16 +283,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                               const SizedBox(width: 4),
-                              Text(
-                                "Sign up",
-                                style: TextStyle(
-                                  color: AppColors.primaryColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (c) => SignupScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
+                          const SizedBox(height: 30),
                         ],
                       ),
                     ),
