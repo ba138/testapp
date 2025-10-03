@@ -2,6 +2,7 @@ import 'package:firstapp/const/auth_button.dart';
 import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/add_pofile_screen.dart';
+import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
 import 'package:firstapp/views/home_screen.dart';
 import 'package:firstapp/views/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -224,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
+                                  builder: (context) => NavBar(),
                                 ),
                                 (route) => false,
                               );
