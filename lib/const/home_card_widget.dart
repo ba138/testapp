@@ -1,5 +1,4 @@
 import 'package:firstapp/const/my_Text.dart';
-import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
