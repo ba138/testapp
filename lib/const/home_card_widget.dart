@@ -4,7 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class HomeCardWidget extends StatelessWidget {
-  const HomeCardWidget({super.key});
+  final String image;
+  final String title;
+  final double averageRating;
+  final String totalRating;
+  const HomeCardWidget({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.averageRating,
+    required this.totalRating,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +34,7 @@ class HomeCardWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: NetworkImage(
-                      "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-                    ),
+                    image: NetworkImage(image),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -59,12 +67,12 @@ class HomeCardWidget extends StatelessWidget {
               Row(
                 children: [
                   MyText(
-                    text: "Hamilton Studio Appartment",
+                    text: title,
                     color: AppColors.toldTextColor,
                     weight: FontWeight.bold,
                   ),
                   RatingBar.builder(
-                    initialRating: 5,
+                    initialRating: averageRating,
                     minRating: 1,
                     direction: Axis.horizontal,
                     allowHalfRating: true,
@@ -80,7 +88,7 @@ class HomeCardWidget extends StatelessWidget {
                       print(rating);
                     },
                   ),
-                  MyText(text: "(20)", color: AppColors.subtitleTextColor),
+                  MyText(text: totalRating, color: AppColors.subtitleTextColor),
                 ],
               ),
               const SizedBox(height: 16),

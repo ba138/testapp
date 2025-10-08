@@ -10,12 +10,50 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List myList = [
+  List<String> myList = [
     "assets/apartments.png",
     "assets/homes.png",
     "assets/villas.png",
     'assets/bungalows.png',
   ];
+  List cardData = [
+    {
+      'title': "ali",
+      "image":
+          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
+      'averageRating': 4.5,
+      'totalRating': "13",
+    },
+    {
+      'title': "ali",
+      "image":
+          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
+      'averageRating': 5,
+      'totalRating': "24",
+    },
+    {
+      'title': "ali",
+      "image":
+          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
+      'averageRating': 3.8,
+      'totalRating': "10",
+    },
+    {
+      'title': "ali",
+      "image":
+          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
+      'averageRating': 4,
+      'totalRating': "18",
+    },
+    {
+      'title': "ali",
+      "image":
+          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
+      'averageRating': 4,
+      'totalRating': "18",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +147,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                HomeCardWidget(),
+                // HomeCardWidget(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ListView.builder(
+                    itemCount: cardData.length,
+                    itemBuilder: (context, index) {
+                      var data = cardData[index];
+                      return HomeCardWidget(
+                        image: data['image'],
+                        title: data['title'],
+                        averageRating: data['averageRating'],
+                        totalRating: data['totalRating'],
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
