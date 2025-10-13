@@ -19,28 +19,28 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   List cardData = [
     {
-      'title': "ali",
+      'title': "hotel",
       "image":
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
       'averageRating': 4.5,
       'totalRating': "13",
     },
     {
-      'title': "ali",
+      'title': "apartment",
       "image":
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
       'averageRating': 5,
       'totalRating': "24",
     },
     {
-      'title': "ali",
+      'title': "Cabin",
       "image":
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
       'averageRating': 3.8,
       'totalRating': "10",
     },
     {
-      'title': "ali",
+      'title': "Home",
       "image":
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
       'averageRating': 4,
@@ -54,6 +54,27 @@ class _HomeScreenState extends State<HomeScreen> {
       'totalRating': "18",
     },
   ];
+  List originalData = [];
+  @override
+  void initState() {
+    originalData = List.from(cardData);
+    super.initState();
+  }
+
+  void search(String query) {
+    if (query.isEmpty) {
+      setState(() {
+        cardData = List.from(originalData);
+      });
+      return;
+    }
+    setState(() {
+      cardData = originalData.where((data) {
+        final title = data["title"].toString().toLowerCase();
+        return title.startsWith(query.toLowerCase());
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: TextField(
+                          onChanged: (value) {
+                            search(value);
+                          },
                           decoration: InputDecoration(
                             hintText: "Search",
                             hintStyle: TextStyle(color: AppColors.strokeColor),

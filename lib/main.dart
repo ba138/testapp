@@ -1,5 +1,4 @@
-import 'package:firstapp/views/filter_screen.dart';
-import 'package:firstapp/views/home_screen.dart';
+import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: FilterScreen(),
+      home: NavBar(),
     );
   }
 }
