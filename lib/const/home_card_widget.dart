@@ -8,12 +8,14 @@ class HomeCardWidget extends StatelessWidget {
   final String title;
   final double averageRating;
   final String totalRating;
+  final VoidCallback ontap;
   const HomeCardWidget({
     super.key,
     required this.image,
     required this.title,
     required this.averageRating,
     required this.totalRating,
+    required this.ontap,
   });
 
   @override
@@ -28,38 +30,41 @@ class HomeCardWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: DecorationImage(
-                    image: NetworkImage(image),
-                    fit: BoxFit.fill,
+              InkWell(
+                onTap: ontap,
+                child: Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: NetworkImage(image),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          color: AppColors.subtitleTextColor.withValues(
-                            alpha: 0.2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: AppColors.subtitleTextColor.withValues(
+                              alpha: 0.2,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Center(
-                          child: MyText(
-                            text: "Most Recommended",
-                            color: AppColors.subtitleTextColor,
+                          child: Center(
+                            child: MyText(
+                              text: "Most Recommended",
+                              color: AppColors.subtitleTextColor,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

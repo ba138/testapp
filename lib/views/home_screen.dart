@@ -1,5 +1,6 @@
 import 'package:firstapp/const/home_card_widget.dart';
 import 'package:firstapp/utills/colors.dart';
+import 'package:firstapp/views/booking_detail_screen.dart';
 import 'package:firstapp/views/filter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
       'averageRating': 4,
       'totalRating': "18",
+      'price': "100",
+      "accodimation": "2",
+      'badrooms': '2',
     },
   ];
   List originalData = [];
@@ -192,6 +196,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: data['title'],
                         averageRating: data['averageRating'],
                         totalRating: data['totalRating'],
+                        ontap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (c) => BookingDetailScreen(data: data),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
