@@ -1,5 +1,6 @@
 import 'package:firstapp/const/custom_app_bar.dart';
 import 'package:firstapp/const/my_Text.dart';
+import 'package:firstapp/const/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class BookingDetailScreen extends StatelessWidget {
@@ -10,6 +11,10 @@ class BookingDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PrimaryButton(buttontext: "Book", onTap: () {}),
+      ),
       body: SafeArea(
         child: Column(
           children: [
