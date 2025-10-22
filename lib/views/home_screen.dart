@@ -1,3 +1,4 @@
+import 'package:firstapp/Controllers/home_controller.dart';
 import 'package:firstapp/const/home_card_widget.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/booking_detail_screen.dart';
@@ -12,68 +13,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeController homeController = HomeController();
   List<String> myList = [
     "assets/apartments.png",
     "assets/homes.png",
     "assets/villas.png",
     'assets/bungalows.png',
   ];
-  List cardData = [
-    {
-      'title': "hotel",
-      "image":
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4.5,
-      'totalRating': "13",
-    },
-    {
-      'title': "apartment",
-      "image":
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 5,
-      'totalRating': "24",
-    },
-    {
-      'title': "Cabin",
-      "image":
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 3.8,
-      'totalRating': "10",
-    },
-    {
-      'title': "Home",
-      "image":
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4,
-      'totalRating': "18",
-    },
-    {
-      'title': "ali",
-      "image":
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4,
-      'totalRating': "18",
-      'price': "100",
-      "accodimation": "2",
-      'badrooms': '2',
-    },
-  ];
+
   List originalData = [];
   @override
   void initState() {
-    originalData = List.from(cardData);
+    originalData = List.from(homeController.cardData);
     super.initState();
   }
 
   void search(String query) {
     if (query.isEmpty) {
       setState(() {
-        cardData = List.from(originalData);
+        homeController.cardData = List.from(originalData);
       });
       return;
     }
     setState(() {
-      cardData = originalData.where((data) {
+      homeController.cardData = originalData.where((data) {
         final title = data["title"].toString().toLowerCase();
         return title.startsWith(query.toLowerCase());
       }).toList();
@@ -188,9 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
                   child: ListView.builder(
-                    itemCount: cardData.length,
+                    itemCount: homeController.cardData.length,
                     itemBuilder: (context, index) {
-                      var data = cardData[index];
+                      var data = homeController.cardData[index];
                       return HomeCardWidget(
                         image: data['image'],
                         title: data['title'],

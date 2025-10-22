@@ -1,3 +1,4 @@
+import 'package:firstapp/Controllers/splash_controller.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,24 +11,21 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  SplashController splashController = SplashController(
+    email: "email",
+    password: "password",
+  );
   @override
   void initState() {
-    navigationToLoginScreen();
-    super.initState();
-  }
+    splashController.navigationToLoginScreen(context);
+    splashController.loginUser("eamil", "password");
 
-  void navigationToLoginScreen() {
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-        (route) => false,
-      );
-    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("this is user:${splashController.name}");
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(

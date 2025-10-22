@@ -68,6 +68,28 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              Container(
+                height: 200,
+                color: Colors.black,
+                width: double.infinity,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: double.infinity,
+                      color: AppColors.primaryColor,
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      left: 20,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.amber,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

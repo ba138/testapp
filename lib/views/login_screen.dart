@@ -1,3 +1,4 @@
+import 'package:firstapp/Controllers/login_controller.dart';
 import 'package:firstapp/const/auth_button.dart';
 import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
@@ -17,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var emailcontroller = TextEditingController();
   var passwordController = TextEditingController();
+  LoginController loginController = LoginController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -222,14 +224,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           PrimaryButton(
                             buttontext: "Login",
                             onTap: () {
-                              Navigator.pushAndRemoveUntil(
+                              // debugPrint("Login tapped");
+                              // int a = int.parse(emailcontroller.text);
+                              // int b = int.parse(passwordController.text);
+                              // loginController.divide(a, b);
+                              // loginController.fetchData();
+                              loginController.loginUser(
+                                emailcontroller.text,
+                                passwordController.text,
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => NavBar(),
-                                ),
-                                (route) => false,
                               );
-                              debugPrint("Login tapped");
                             },
                           ),
 
