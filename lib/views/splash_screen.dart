@@ -1,6 +1,5 @@
 import 'package:firstapp/Controllers/splash_controller.dart';
 import 'package:firstapp/utills/colors.dart';
-import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,13 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     splashController.navigationToLoginScreen(context);
     splashController.loginUser("eamil", "password");
-
+    splashController.fetchUserData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     debugPrint("this is user:${splashController.name}");
+    debugPrint("this is the user name:${splashController.userName}");
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(

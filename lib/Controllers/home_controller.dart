@@ -1,4 +1,6 @@
 class HomeController {
+  List originalData = [];
+
   List cardData = [
     {
       'title': "hotel",
@@ -39,4 +41,10 @@ class HomeController {
       'badrooms': '2',
     },
   ];
+  void search(String query) {
+    cardData = originalData.where((data) {
+      final title = data["title"].toString().toLowerCase();
+      return title.startsWith(query.toLowerCase());
+    }).toList();
+  }
 }

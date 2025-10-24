@@ -1,7 +1,18 @@
 import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashController {
+class UserData {
+  String userName = "Haider";
+  void fetchUserData() {
+    try {
+      debugPrint("fetched User data");
+    } catch (e) {
+      debugPrint("this is the error$e");
+    }
+  }
+}
+
+class SplashController extends UserData {
   String name = "Ali";
   String email;
   String password;

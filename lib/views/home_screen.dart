@@ -21,26 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
     'assets/bungalows.png',
   ];
 
-  List originalData = [];
   @override
   void initState() {
-    originalData = List.from(homeController.cardData);
+    homeController.originalData = List.from(homeController.cardData);
     super.initState();
-  }
-
-  void search(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        homeController.cardData = List.from(originalData);
-      });
-      return;
-    }
-    setState(() {
-      homeController.cardData = originalData.where((data) {
-        final title = data["title"].toString().toLowerCase();
-        return title.startsWith(query.toLowerCase());
-      }).toList();
-    });
   }
 
   @override
@@ -88,7 +72,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       Expanded(
                         child: TextField(
                           onChanged: (value) {
-                            search(value);
+                            if (value.isEmpty) {
+                              setState(() {
+                                homeController.cardData = List.from(
+                                  homeController.originalData,
+                                );
+                              });
+                            } else {
+                              setState(() {
+                                homeController.search(value);
+                              });
+                            }
                           },
                           decoration: InputDecoration(
                             hintText: "Search",
