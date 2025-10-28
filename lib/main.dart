@@ -1,5 +1,3 @@
-import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
-import 'package:firstapp/views/bottom_nav_bar/profile_screen.dart';
 import 'package:firstapp/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
