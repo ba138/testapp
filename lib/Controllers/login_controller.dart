@@ -1,16 +1,12 @@
 import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginController {
-  void divide(int a, int b) {
-    try {
-      int result = a ~/ b;
-      debugPrint("the result is:$result");
-    } catch (e) {
-      debugPrint("this is the error:$e");
-    }
-  }
-
+class LoginController extends GetxController {
+  var name = "ali".obs;
+  var ishow = false.obs;
+  List myList = [].obs;
+  Map myMap = {}.obs;
   Future<void> fetchData() async {
     try {
       debugPrint("fetching data...");
@@ -21,20 +17,21 @@ class LoginController {
     }
   }
 
-  void loginUser(String email, String pawword, BuildContext context) {
+  void loginUser(String email, String pawword) {
     try {
       if (email.isEmpty || pawword.isEmpty) {
         throw Exception("Email or password cannot be empty");
       } else {
         debugPrint("User logged in successfully");
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => NavBar()),
-          (route) => false,
-        );
+        Get.offAll(() => NavBar());
       }
     } catch (e) {
       debugPrint("this is the error:$e");
     }
+  }
+
+  void visible() {
+    ishow.value = !ishow.value;
+    debugPrint("this is the value:${ishow.value}");
   }
 }

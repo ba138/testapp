@@ -1,29 +1,17 @@
 import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class UserData {
-  String userName = "Haider";
-  void fetchUserData() {
-    try {
-      debugPrint("fetched User data");
-    } catch (e) {
-      debugPrint("this is the error$e");
-    }
+class SplashController extends GetxController {
+  @override
+  void onInit() {
+    navigationToLoginScreen();
+    super.onInit();
   }
-}
 
-class SplashController extends UserData {
-  String name = "Ali";
-  String email;
-  String password;
-  SplashController({required this.email, required this.password});
-  void navigationToLoginScreen(BuildContext context) {
+  void navigationToLoginScreen() {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (c) => LoginScreen()),
-        (Route) => false,
-      );
+      Get.offAll(() => LoginScreen());
     });
   }
 

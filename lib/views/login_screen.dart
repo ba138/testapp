@@ -7,6 +7,7 @@ import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
 import 'package:firstapp/views/home_screen.dart';
 import 'package:firstapp/views/signup_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,9 +19,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var emailcontroller = TextEditingController();
   var passwordController = TextEditingController();
-  LoginController loginController = LoginController();
+  LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
+    debugPrint("this is user name:${loginController.name.value}");
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -147,23 +149,47 @@ class _LoginScreenState extends State<LoginScreen> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      TextField(
-                                        controller: passwordController,
-                                        decoration: InputDecoration(
-                                          suffixIcon: Icon(
-                                            Icons.visibility,
-                                            color: AppColors.strokeColor,
-                                          ),
-                                          border: InputBorder.none,
-                                          hintText: "******",
-                                          hintStyle: TextStyle(
-                                            color: AppColors.subtitleTextColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                          contentPadding: EdgeInsets.only(
-                                            top: 12,
-                                            bottom: 12,
+                                      Obx(
+                                        () => TextField(
+                                          obscureText:
+                                              loginController.ishow.value,
+                                          controller: passwordController,
+
+                                          decoration: InputDecoration(
+                                            suffixIcon:
+                                                loginController.ishow.value
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      loginController.visible();
+                                                    },
+                                                    child: Icon(
+                                                      Icons.visibility,
+                                                      color:
+                                                          AppColors.strokeColor,
+                                                    ),
+                                                  )
+                                                : InkWell(
+                                                    onTap: () {
+                                                      loginController.visible();
+                                                    },
+                                                    child: Icon(
+                                                      Icons.visibility_off,
+                                                      color:
+                                                          AppColors.strokeColor,
+                                                    ),
+                                                  ),
+                                            border: InputBorder.none,
+                                            hintText: "******",
+                                            hintStyle: TextStyle(
+                                              color:
+                                                  AppColors.subtitleTextColor,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                            contentPadding: EdgeInsets.only(
+                                              top: 12,
+                                              bottom: 12,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -224,15 +250,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           PrimaryButton(
                             buttontext: "Login",
                             onTap: () {
-                              // debugPrint("Login tapped");
-                              // int a = int.parse(emailcontroller.text);
-                              // int b = int.parse(passwordController.text);
-                              // loginController.divide(a, b);
-                              // loginController.fetchData();
                               loginController.loginUser(
                                 emailcontroller.text,
                                 passwordController.text,
-                                context,
                               );
                             },
                           ),
