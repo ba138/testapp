@@ -1,7 +1,15 @@
-class HomeController {
-  List originalData = [];
+import 'package:get/get.dart';
 
-  List cardData = [
+class HomeController extends GetxController {
+  @override
+  void onInit() {
+    originalData.assignAll(cardData);
+    super.onInit();
+  }
+
+  var originalData = <Map<String, dynamic>>[].obs;
+
+  var cardData = <Map<String, dynamic>>[
     {
       'title': "hotel",
       "image":
@@ -40,11 +48,17 @@ class HomeController {
       "accodimation": "2",
       'badrooms': '2',
     },
-  ];
+  ].obs;
+
   void search(String query) {
-    cardData = originalData.where((data) {
+    if (query.isEmpty) {
+      cardData.assignAll(originalData);
+      return;
+    }
+    var filtered = originalData.where((data) {
       final title = data["title"].toString().toLowerCase();
       return title.startsWith(query.toLowerCase());
     }).toList();
+    cardData.assignAll(filtered);
   }
 }

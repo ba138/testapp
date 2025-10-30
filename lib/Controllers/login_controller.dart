@@ -20,8 +20,10 @@ class LoginController extends GetxController {
   void loginUser(String email, String pawword) {
     try {
       if (email.isEmpty || pawword.isEmpty) {
+        Get.snackbar("Error", "Email or password cannot be empty");
         throw Exception("Email or password cannot be empty");
       } else {
+        Get.snackbar("Success", "User logged in successfully");
         debugPrint("User logged in successfully");
         Get.offAll(() => NavBar());
       }
