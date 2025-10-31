@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:firstapp/Controllers/home_controller.dart';
 import 'package:firstapp/const/home_card_widget.dart';
 import 'package:firstapp/utills/colors.dart';
@@ -135,15 +137,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         var data = homeController.cardData[index];
                         return HomeCardWidget(
-                          image: data['image'],
-                          title: data['title'],
-                          averageRating: data['averageRating'],
-                          totalRating: data['totalRating'],
+                          image: data.image,
+                          title: data.title,
+                          averageRating: data.averageRating,
+                          totalRating: data.totalRating,
                           ontap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (c) => BookingDetailScreen(data: data),
+                                builder: (c) =>
+                                    BookingDetailScreen(data: data.fromJson()),
                               ),
                             );
                           },

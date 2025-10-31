@@ -1,3 +1,4 @@
+import 'package:firstapp/Models/card_data_model.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -7,47 +8,45 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  var originalData = <Map<String, dynamic>>[].obs;
+  var originalData = <CardDataModel>[].obs;
 
-  var cardData = <Map<String, dynamic>>[
-    {
-      'title': "hotel",
-      "image":
+  var cardData = <CardDataModel>[
+    CardDataModel(
+      title: "hotel",
+      image:
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4.5,
-      'totalRating': "13",
-    },
-    {
-      'title': "apartment",
-      "image":
+      averageRating: 3.5,
+      totalRating: "4",
+    ),
+
+    CardDataModel(
+      title: "hotel",
+      image:
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 5,
-      'totalRating': "24",
-    },
-    {
-      'title': "Cabin",
-      "image":
+      averageRating: 3.5,
+      totalRating: "4",
+    ),
+    CardDataModel(
+      title: "hotel",
+      image:
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 3.8,
-      'totalRating': "10",
-    },
-    {
-      'title': "Home",
-      "image":
+      averageRating: 3.5,
+      totalRating: "4",
+    ),
+    CardDataModel(
+      title: "hotel",
+      image:
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4,
-      'totalRating': "18",
-    },
-    {
-      'title': "ali",
-      "image":
+      averageRating: 3.5,
+      totalRating: "4",
+    ),
+    CardDataModel(
+      title: "hotel",
+      image:
           "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      'averageRating': 4,
-      'totalRating': "18",
-      'price': "100",
-      "accodimation": "2",
-      'badrooms': '2',
-    },
+      averageRating: 3.5,
+      totalRating: "4",
+    ),
   ].obs;
 
   void search(String query) {
@@ -56,7 +55,7 @@ class HomeController extends GetxController {
       return;
     }
     var filtered = originalData.where((data) {
-      final title = data["title"].toString().toLowerCase();
+      final title = data.title.toString().toLowerCase();
       return title.startsWith(query.toLowerCase());
     }).toList();
     cardData.assignAll(filtered);
