@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:firstapp/Controllers/home_controller.dart';
 import 'package:firstapp/const/home_card_widget.dart';
 import 'package:firstapp/utills/colors.dart';
