@@ -1,14 +1,17 @@
+import 'package:firstapp/Controllers/login_controller.dart';
 import 'package:firstapp/const/logo_appbar.dart';
 import 'package:firstapp/const/my_Text.dart';
 import 'package:firstapp/const/profile_tile.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    LoginController loginController = Get.put(LoginController());
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -63,7 +66,9 @@ class ProfileScreen extends StatelessWidget {
                     ProfileTile(
                       iconData: Icons.location_on,
                       title: "Trips",
-                      ontap: () {},
+                      ontap: () {
+                        loginController.logoutUser();
+                      },
                     ),
                   ],
                 ),

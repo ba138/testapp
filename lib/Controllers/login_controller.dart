@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
+import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +9,7 @@ class LoginController extends GetxController {
   var ishow = false.obs;
   List myList = [].obs;
   Map myMap = {}.obs;
+  FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> fetchData() async {
     try {
       debugPrint("fetching data...");
@@ -23,6 +26,7 @@ class LoginController extends GetxController {
         Get.snackbar("Error", "Email or password cannot be empty");
         throw Exception("Email or password cannot be empty");
       } else {
+        auth.signInWithEmailAndPassword(email: email, password: pawword);
         Get.snackbar("Success", "User logged in successfully");
         debugPrint("User logged in successfully");
         Get.offAll(() => NavBar());
@@ -35,5 +39,36 @@ class LoginController extends GetxController {
   void visible() {
     ishow.value = !ishow.value;
     debugPrint("this is the value:${ishow.value}");
+  }
+
+  Future<void> registerUser(String email, String password) async {
+    try {
+      if (email.isEmpty || password.isEmpty) {
+        Get.snackbar("Error", "Email or password cannot be empty");
+        throw Exception("Email or password cannot be empty");
+      } else {
+        await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        if (auth.currentUser!.uid.isNotEmpty) {
+          Get.snackbar("Success", "User registered successfully");
+          debugPrint("User registered successfully");
+          Get.offAll(() => NavBar());
+        }
+      }
+    } catch (e) {
+      debugPrint("this is the error:$e");
+    }
+  }
+
+  void logoutUser() async {
+    try {
+      await auth.signOut();
+      Get.offAll(() => LoginScreen());
+      Get.snackbar("Success", "User logged out successfully");
+    } catch (e) {
+      debugPrint("this is the error:$e");
+    }
   }
 }

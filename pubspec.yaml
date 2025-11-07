@@ -37,6 +37,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   get: ^4.7.2
   firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
 
 dev_dependencies:
   flutter_test:
