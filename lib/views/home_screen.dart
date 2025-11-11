@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (c) =>
-                                    BookingDetailScreen(data: data.fromJson()),
+                                    BookingDetailScreen(data: data.toJason()),
                               ),
                             );
                           },

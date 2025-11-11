@@ -9,7 +9,7 @@ class CardDataModel {
     required this.averageRating,
     required this.totalRating,
   });
-  Map<String, dynamic> fromJson() {
+  Map<String, dynamic> toJason() {
     return {
       "title": title,
       'image': image,
