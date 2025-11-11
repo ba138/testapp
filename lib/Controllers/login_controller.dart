@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firstapp/Models/user_model.dart';
+import 'package:firstapp/const/loading_dialog.dart';
 import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
 import 'package:firstapp/views/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,7 @@ class LoginController extends GetxController {
   List myList = [].obs;
   Map myMap = {}.obs;
   FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   Future<void> fetchData() async {
     try {
       debugPrint("fetching data...");
@@ -26,12 +30,18 @@ class LoginController extends GetxController {
         Get.snackbar("Error", "Email or password cannot be empty");
         throw Exception("Email or password cannot be empty");
       } else {
+        Get.dialog(LoadingDialog(), barrierDismissible: true);
         auth.signInWithEmailAndPassword(email: email, password: pawword);
-        Get.snackbar("Success", "User logged in successfully");
-        debugPrint("User logged in successfully");
-        Get.offAll(() => NavBar());
+
+        if (auth.currentUser != null) {
+          Get.snackbar("Success", "User logged in successfully");
+          debugPrint("User logged in successfully");
+          Get.offAll(() => NavBar());
+        }
       }
+      Get.back();
     } catch (e) {
+      Get.back();
       debugPrint("this is the error:$e");
     }
   }
@@ -45,29 +55,41 @@ class LoginController extends GetxController {
     try {
       if (email.isEmpty || password.isEmpty) {
         Get.snackbar("Error", "Email or password cannot be empty");
-        throw Exception("Email or password cannot be empty");
       } else {
+        Get.dialog(LoadingDialog(), barrierDismissible: true);
         await auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
         if (auth.currentUser!.uid.isNotEmpty) {
+          UserModel userData = UserModel(
+            uid: auth.currentUser!.uid,
+            email: email,
+            name: "jhon doe",
+          );
+          await firestore
+              .collection("users")
+              .doc(auth.currentUser!.uid)
+              .set(userData.toJson());
           Get.snackbar("Success", "User registered successfully");
           debugPrint("User registered successfully");
           Get.offAll(() => NavBar());
         }
       }
     } catch (e) {
+      Get.back();
       debugPrint("this is the error:$e");
     }
   }
 
   void logoutUser() async {
     try {
+      Get.dialog(LoadingDialog(), barrierDismissible: true);
       await auth.signOut();
       Get.offAll(() => LoginScreen());
       Get.snackbar("Success", "User logged out successfully");
     } catch (e) {
+      Get.back();
       debugPrint("this is the error:$e");
     }
   }
