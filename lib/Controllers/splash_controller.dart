@@ -26,10 +26,10 @@ class SplashController extends GetxController {
       //   });
       // }
       Future.delayed(Duration(seconds: 3), () {
-        if (auth.currentUser == null) {
-          Get.offAll(() => LoginScreen());
-        } else {
+        if (auth.currentUser != null) {
           Get.offAll(() => NavBar());
+        } else {
+          Get.offAll(() => LoginScreen());
         }
       });
     } catch (e) {
