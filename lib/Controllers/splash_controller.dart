@@ -26,7 +26,7 @@ class SplashController extends GetxController {
       //   });
       // }
       Future.delayed(Duration(seconds: 3), () {
-        if (auth.currentUser != null) {
+        if (auth.currentUser != null && auth.currentUser!.emailVerified) {
           Get.offAll(() => NavBar());
         } else {
           Get.offAll(() => LoginScreen());

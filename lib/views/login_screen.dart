@@ -4,6 +4,7 @@ import 'package:firstapp/const/primary_button.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/add_pofile_screen.dart';
 import 'package:firstapp/views/bottom_nav_bar/nav_bar.dart';
+import 'package:firstapp/views/forget_password_screen.dart';
 import 'package:firstapp/views/home_screen.dart';
 import 'package:firstapp/views/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -202,12 +203,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(height: 10),
                           Align(
                             alignment: Alignment.centerRight,
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => ForgetPasswordScreen());
+                              },
+                              child: Text(
+                                "Forgot Password?",
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),

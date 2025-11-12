@@ -33,7 +33,7 @@ class LoginController extends GetxController {
         Get.dialog(LoadingDialog(), barrierDismissible: true);
         auth.signInWithEmailAndPassword(email: email, password: pawword);
 
-        if (auth.currentUser != null) {
+        if (auth.currentUser != null && auth.currentUser!.emailVerified) {
           Get.snackbar("Success", "User logged in successfully");
           debugPrint("User logged in successfully");
           Get.offAll(() => NavBar());
@@ -71,9 +71,10 @@ class LoginController extends GetxController {
               .collection("users")
               .doc(auth.currentUser!.uid)
               .set(userData.toJson());
+          auth.currentUser!.sendEmailVerification();
           Get.snackbar("Success", "User registered successfully");
           debugPrint("User registered successfully");
-          Get.offAll(() => NavBar());
+          Get.offAll(() => LoginScreen());
         }
       }
     } catch (e) {
@@ -88,6 +89,22 @@ class LoginController extends GetxController {
       await auth.signOut();
       Get.offAll(() => LoginScreen());
       Get.snackbar("Success", "User logged out successfully");
+    } catch (e) {
+      Get.back();
+      debugPrint("this is the error:$e");
+    }
+  }
+
+  void resetPassword(String email) async {
+    try {
+      if (email.isEmpty) {
+        Get.snackbar("Error", "Email cannot be empty");
+        return;
+      }
+      Get.dialog(LoadingDialog(), barrierDismissible: true);
+      await auth.sendPasswordResetEmail(email: email);
+      Get.to(() => LoginScreen());
+      Get.snackbar("Success", "Password reset email sent successfully");
     } catch (e) {
       Get.back();
       debugPrint("this is the error:$e");
