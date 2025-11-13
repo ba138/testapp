@@ -1,3 +1,4 @@
+import 'package:firstapp/Controllers/current_user_controller.dart';
 import 'package:firstapp/Controllers/login_controller.dart';
 import 'package:firstapp/const/logo_appbar.dart';
 import 'package:firstapp/const/my_Text.dart';
@@ -12,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
+    var currentUser = Get.put(CurrentUserController());
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -25,6 +27,23 @@ class ProfileScreen extends StatelessWidget {
                 size: 20,
                 weight: FontWeight.bold,
                 color: AppColors.toldTextColor,
+              ),
+              Obx(
+                () => MyText(text: currentUser.userModel.value?.name ?? "N/A"),
+              ),
+              Obx(
+                () => MyText(text: currentUser.userModel.value?.email ?? "N/A"),
+              ),
+              Obx(
+                () => MyText(text: currentUser.userModel.value?.uid ?? "N/A"),
+              ),
+              Obx(
+                () => CircleAvatar(
+                  radius: 40,
+                  backgroundImage: currentUser.userModel.value?.profile != null
+                      ? NetworkImage(currentUser.userModel.value!.profile!)
+                      : null,
+                ),
               ),
               const SizedBox(height: 10),
               Container(
