@@ -2,6 +2,7 @@ import 'package:firstapp/Controllers/home_controller.dart';
 import 'package:firstapp/const/home_card_widget.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/booking_detail_screen.dart';
+import 'package:firstapp/views/card_forum.dart';
 import 'package:firstapp/views/filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => CardForum());
+        },
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8),
