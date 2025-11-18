@@ -1,4 +1,5 @@
 import 'package:firstapp/Controllers/card_data_controller.dart';
+import 'package:firstapp/const/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +38,12 @@ class CardForum extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            PrimaryButton(
+              buttontext: "Upload",
+              onTap: () {
+                cardDataController.uploadToFirestore();
+              },
             ),
           ],
         ),
