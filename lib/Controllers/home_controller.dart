@@ -1,63 +1,43 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firstapp/Models/card_data_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
+  var firestore = FirebaseFirestore.instance;
   @override
   void onInit() {
-    originalData.assignAll(cardData);
+    fetchData();
+    originalData.assignAll(cardDataList);
     super.onInit();
   }
 
   var originalData = <CardDataModel>[].obs;
 
-  var cardData = <CardDataModel>[
-    CardDataModel(
-      title: "hotel",
-      image:
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      averageRating: 3.5,
-      totalRating: "4",
-    ),
-
-    CardDataModel(
-      title: "hotel",
-      image:
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      averageRating: 3.5,
-      totalRating: "4",
-    ),
-    CardDataModel(
-      title: "hotel",
-      image:
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      averageRating: 3.5,
-      totalRating: "4",
-    ),
-    CardDataModel(
-      title: "hotel",
-      image:
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      averageRating: 3.5,
-      totalRating: "4",
-    ),
-    CardDataModel(
-      title: "hotel",
-      image:
-          "https://plus.unsplash.com/premium_photo-1676823553207-758c7a66e9bb?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXBhcnRtZW50JTIwaW50ZXJpb3J8ZW58MHx8MHx8fDA%3D",
-      averageRating: 3.5,
-      totalRating: "4",
-    ),
-  ].obs;
+  var cardDataList = <CardDataModel>[].obs;
 
   void search(String query) {
     if (query.isEmpty) {
-      cardData.assignAll(originalData);
+      cardDataList.assignAll(originalData);
       return;
     }
     var filtered = originalData.where((data) {
       final title = data.title.toString().toLowerCase();
       return title.startsWith(query.toLowerCase());
     }).toList();
-    cardData.assignAll(filtered);
+    cardDataList.assignAll(filtered);
+  }
+
+  Future<void> fetchData() async {
+    try {
+      var snapshot = await firestore.collection("carData").get();
+      var cardData = snapshot.docs.map((value) {
+        return CardDataModel.fromJson(value.data());
+      }).toList();
+      cardDataList.assignAll(cardData);
+      debugPrint("this is the data = ${cardDataList.length}");
+    } catch (e) {
+      debugPrint("this is the error$e");
+    }
   }
 }

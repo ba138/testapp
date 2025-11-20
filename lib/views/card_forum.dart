@@ -3,12 +3,19 @@ import 'package:firstapp/const/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CardForum extends StatelessWidget {
+class CardForum extends StatefulWidget {
   const CardForum({super.key});
 
   @override
+  State<CardForum> createState() => _CardForumState();
+}
+
+class _CardForumState extends State<CardForum> {
+  var cardDataController = Get.put(CardDataController());
+  List rooms = [1, 2, 3, 4, 5];
+  int? selectedRooms;
+  @override
   Widget build(BuildContext context) {
-    var cardDataController = Get.put(CardDataController());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -38,6 +45,22 @@ class CardForum extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            DropdownButton(
+              hint: Text("Select numbers of rooms"),
+              isExpanded: true,
+              value: selectedRooms,
+              items: rooms.map((value) {
+                return DropdownMenuItem(
+                  value: value,
+                  child: Text(value.toString()),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedRooms = int.parse(value.toString());
+                });
+              },
             ),
             PrimaryButton(
               buttontext: "Upload",

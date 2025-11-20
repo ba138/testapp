@@ -15,7 +15,9 @@ class CardDataController extends GetxController {
   var storage = FirebaseStorage.instance.ref();
   var selectedImage = Rxn<File>();
   final _imagePicker = ImagePicker();
+  var cardDataList = <CardDataModel>[].obs;
   var uuid = Uuid().v1();
+
   Future<void> pickImage() async {
     try {
       final pickedImage = await _imagePicker.pickImage(

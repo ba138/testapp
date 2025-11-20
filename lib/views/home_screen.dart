@@ -137,9 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: MediaQuery.of(context).size.height * 0.8,
                   child: Obx(
                     () => ListView.builder(
-                      itemCount: homeController.cardData.length,
+                      itemCount: homeController.cardDataList.length,
                       itemBuilder: (context, index) {
-                        var data = homeController.cardData[index];
+                        var data = homeController.cardDataList[index];
                         return HomeCardWidget(
                           image: data.image,
                           title: data.title,
