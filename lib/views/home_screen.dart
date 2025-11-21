@@ -6,6 +6,7 @@ import 'package:firstapp/views/card_forum.dart';
 import 'package:firstapp/views/filter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -135,8 +136,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 // HomeCardWidget(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.8,
-                  child: Obx(
-                    () => ListView.builder(
+                  child: Obx(() {
+                    if (homeController.isLoading.value) {
+                      return ListView.builder(
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            child: Container(
+                              height: 100,
+                              width: double.infinity,
+                              color: Colors.white,
+                            ),
+                          );
+                        },
+                      );
+                    } else if (homeController.cardDataList.isEmpty) {
+                      return Center(child: Text("No Data Found"));
+                    }
+                    return ListView.builder(
                       itemCount: homeController.cardDataList.length,
                       itemBuilder: (context, index) {
                         var data = homeController.cardDataList[index];
@@ -156,8 +175,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         );
                       },
-                    ),
-                  ),
+                    );
+                  }),
                 ),
               ],
             ),

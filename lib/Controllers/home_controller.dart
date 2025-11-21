@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   var firestore = FirebaseFirestore.instance;
+  var isLoading = false.obs;
   @override
   void onInit() {
     fetchData();
@@ -28,15 +29,19 @@ class HomeController extends GetxController {
     cardDataList.assignAll(filtered);
   }
 
-  Future<void> fetchData() async {
+  void fetchData() {
     try {
-      var snapshot = await firestore.collection("carData").get();
-      var cardData = snapshot.docs.map((value) {
-        return CardDataModel.fromJson(value.data());
-      }).toList();
-      cardDataList.assignAll(cardData);
-      debugPrint("this is the data = ${cardDataList.length}");
+      isLoading.value = true;
+      firestore.collection("carData").snapshots().listen((snapshot) {
+        var cardData = snapshot.docs.map((value) {
+          return CardDataModel.fromJson(value.data());
+        }).toList();
+        cardDataList.assignAll(cardData);
+        isLoading.value = false;
+        debugPrint("this is the data = ${cardDataList.length}");
+      });
     } catch (e) {
+      isLoading.value = false;
       debugPrint("this is the error$e");
     }
   }
