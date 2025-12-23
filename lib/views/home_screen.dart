@@ -1,5 +1,6 @@
 import 'package:firstapp/Controllers/home_controller.dart';
 import 'package:firstapp/const/home_card_widget.dart';
+import 'package:firstapp/services/get_service.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:firstapp/views/booking_detail_screen.dart';
 import 'package:firstapp/views/card_forum.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/villas.png",
     'assets/bungalows.png',
   ];
+  GetServices getServices = Get.put(GetServices());
 
   @override
   Widget build(BuildContext context) {

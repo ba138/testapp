@@ -44,6 +44,7 @@ dependencies:
   uuid: ^4.5.2
   shimmer_effect: ^1.0.4
   shimmer: ^3.0.0
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:

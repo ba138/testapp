@@ -38,7 +38,6 @@ class HomeController extends GetxController {
         }).toList();
         cardDataList.assignAll(cardData);
         isLoading.value = false;
-        debugPrint("this is the data = ${cardDataList.length}");
       });
     } catch (e) {
       isLoading.value = false;

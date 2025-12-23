@@ -1,4 +1,5 @@
 import 'package:firstapp/Controllers/splash_controller.dart';
+import 'package:firstapp/services/get_service.dart';
 import 'package:firstapp/utills/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   SplashController splashController = Get.put(SplashController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
