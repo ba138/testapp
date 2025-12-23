@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 
 class GetServices extends GetxController {
-  var postData = <PostModel>[]; // nullable single model
+  var postData = <PostModel>[].obs; // nullable single model
   @override
   void onInit() {
     super.onInit();
@@ -21,7 +21,7 @@ class GetServices extends GetxController {
       if (response.statusCode == 200) {
         debugPrint("Data fetched successfully: ${response.body}");
         final jsonData = jsonDecode(response.body);
-        postData.value = PostModel.fromJson(jsonData);
+        postData.value = jsonData.map((e) => PostModel.fromJson(e)).toList();
       } else {
         debugPrint("Failed to load data: ${response.statusCode}");
       }
